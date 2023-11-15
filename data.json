@@ -1,0 +1,6 @@
+{
+  "programming": ["php", "javascript", "go", "scala", "fortran", "Java", "mysql", "python"],
+  "Animals": ["Dog", "Cow", "Horse", "Cat", "Donkey", "Lion", "Tiger"],
+  "people": ["Taha Khaled", "Othman", "Saad", "Ahmed", "Omar", "Ali"],
+  "countries": ["Syria", "Palestine", "Yemen", "Egypt", "Bahrain", "Qatar"]
+}

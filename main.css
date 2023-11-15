@@ -1,0 +1,322 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  --main-color: #222;
+  --main-height: 4px;
+}
+body {
+  font-family: Tahoma, Arial;
+}
+.container {
+  margin: 20px auto;
+  width: 85%;
+}
+h1 {
+  width: fit-content;
+  text-align: center;
+  font-size: 40px;
+  font-family: "Trebuchet MS", sans-serif;
+  letter-spacing: -2px;
+  background: linear-gradient(to right, #008174, #00c4b0, #ff4482, #b9184e);
+  padding: 10px 20px;
+  border-radius: 4px;
+  margin: 20px auto;
+  color: white;
+  box-shadow: 0 0 20px black;
+}
+.row {
+  display: flex;
+}
+hr {
+  border: 1px solid #eee;
+}
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.game-info .category span {
+  text-transform: capitalize;
+  color: #e91e63;
+  font-weight: bold;
+  border: 2px solid #bbb;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+}
+.hangman-draw {
+  flex: 1;
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: 324px;
+}
+.hangman-draw .the-draw {
+  width: 60px;
+  height: 280px;
+  border-bottom: 4px solid #222;
+  position: relative;
+  margin: auto;
+  left: -60px;
+  display: none;
+}
+.hangman-draw .the-stand {
+  position: absolute;
+  background-color: #222;
+  width: 10px;
+  height: 100%;
+  left: 50%;
+  margin-left: -2px;
+  display: none;
+  border-radius: 5px 5px 0px 0px;
+}
+.hangman-draw .the-hang {
+  display: none;
+}
+.hangman-draw .the-hang::before {
+  content: "";
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+  width: 100px;
+  left: 30px;
+  top: 15px;
+}
+.hangman-draw .the-hang::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 30px;
+  background-color: #222;
+  left: 130px;
+  top: 15px;
+}
+.hangman-draw .the-rope {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  left: 95px;
+  top: 45px;
+  border: 4px dotted #999;
+  display: none;
+}
+.hangman-draw .the-man .head {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid #5b618a;
+  position: absolute;
+  top: 55px;
+  left: 105px;
+  display: none;
+}
+.hangman-draw .the-man .body {
+  position: absolute;
+  background-color: #5b618a;
+  width: 4px;
+  height: 110px;
+  top: 102px;
+  left: 130px;
+  display: none;
+}
+.hangman-draw .the-man .hands {
+  display: none;
+}
+.hangman-draw .the-man .hands::before,
+.hangman-draw .the-man .hands::after {
+  content: "";
+  width: 50px;
+  position: absolute;
+  top: 140px;
+  height: 4px;
+  background-color: #5b618a;
+}
+.hangman-draw .the-man .hands::before {
+  left: 85px;
+  transform: rotate(30deg);
+}
+.hangman-draw .the-man .hands::after {
+  left: 130px;
+  transform: rotate(-30deg);
+}
+.hangman-draw .the-man .legs {
+  display: none;
+}
+.hangman-draw .the-man .legs::before,
+.hangman-draw .the-man .legs::after {
+  content: "";
+  width: 50px;
+  position: absolute;
+  top: 220px;
+  height: 4px;
+  background-color: #5b618a;
+}
+.hangman-draw .the-man .legs::before {
+  left: 85px;
+  transform: rotate(-30deg);
+}
+.hangman-draw .the-man .legs::after {
+  left: 130px;
+  transform: rotate(30deg);
+}
+.hangman-draw.wrong-1 .the-draw {
+  display: block;
+}
+.hangman-draw.wrong-2 .the-stand {
+  display: block;
+}
+.hangman-draw.wrong-3 .the-hang {
+  display: block;
+}
+.hangman-draw.wrong-4 .the-rope {
+  display: block;
+}
+.hangman-draw.wrong-5 .head {
+  display: block;
+}
+.hangman-draw.wrong-6 .body {
+  display: block;
+}
+.hangman-draw.wrong-7 .hands {
+  display: block;
+}
+.hangman-draw.wrong-8 .legs {
+  display: block;
+}
+.letters {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+}
+.letters.finished {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.letter-box {
+  width: 55px;
+  height: 55px;
+  display: inline-block;
+  background-color: #009688;
+  color: white;
+  font-size: 24px;
+  margin-right: 10px;
+  line-height: 55px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.letters .letter-box.clicked {
+  background-color: #222;
+  opacity: 0.2;
+  pointer-events: none;
+}
+.letters-guess {
+  margin: 10px auto;
+  background-color: #f0f0f0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 104px;
+}
+.letters-guess span {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #fdfdfd;
+  border-bottom: 3px solid #999;
+  transition: 0.3s;
+}
+.letters-guess span.with-space {
+  background: none;
+  border-bottom: none;
+  position: relative;
+}
+.letters-guess span.with-space::before {
+  content: "";
+  width: 20px;
+  height: 4px;
+  background-color: #222;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.failPopup,
+.successPopup {
+  position: fixed;
+  padding: 50px 20px;
+  width: 80%;
+  top: 15%;
+  left: 10%;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  border-radius: 20px;
+  transform: rotate(-5deg);
+}
+.failPopup {
+  background: linear-gradient(to right, #5e152d, #b9184e, #b9184e, #6f0d2e);
+  box-shadow: 0 0 200px rgb(0, 0, 0);
+}
+.successPopup {
+  background: linear-gradient(to right, #005048, #008174, #008174, #244944);
+  box-shadow: 0 0 200px #0b620bd4;
+}
+.level-div {
+  font-size: 18px;
+  color: #dfdede;
+  word-spacing: 5px;
+  line-height: 40px;
+}
+.play-again {
+  border: none;
+  padding: 10px 20px;
+  background: #777;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  left: -50px;
+  transform: rotate(-90deg);
+}
+@media (max-width: 1030px) {
+  .row {
+    flex-direction: column;
+  }
+  .letter-box {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .letters-guess span {
+    width: 30px;
+    height: 40px;
+    font-size: 15px;
+    line-height: 35px;
+  }
+  .letters-guess span.with-space::before {
+    width: 10px;
+  }
+  .successPopup, .failPopup {
+    font-size: 20px;
+  }
+  .level-div {
+    font-size: 15px;
+  }
+  .play-again {
+    font-size: 18px;
+    position: fixed;
+    top: 40%;
+  }
+}
